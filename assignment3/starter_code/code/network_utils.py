@@ -25,7 +25,14 @@ def build_mlp(input_size, output_size, n_layers, size):
     """
     #######################################################
     #########   YOUR CODE HERE - 7-15 lines.   ############
-
+    network = nn.Sequential()
+    network.add_module("linear_in", nn.Linear(input_size, size))
+    network.add_module("relu_in", nn.ReLU())
+    for i in range(n_layers):
+        network.add_module(f"linear_{i}", nn.Linear(size, size))
+        network.add_module(f"relu_{i}", nn.ReLU())
+    network.add_module("linear_out", nn.Linear(size, output_size))
+    return network
     #######################################################
     #########          END YOUR CODE.          ############
 
