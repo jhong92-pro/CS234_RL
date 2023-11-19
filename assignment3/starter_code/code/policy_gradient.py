@@ -72,8 +72,8 @@ class PolicyGradient(object):
         """
         #######################################################
         #########   YOUR CODE HERE - 8-12 lines.   ############
-        network = build_mlp(self.observation_dim, self.action_dim, self.config.n_layer, self.config.layer_size)
-        self.policy = CategoricalPolicy(network) if self.discrete else GaussianPolicy(network)
+        network = build_mlp(self.observation_dim, self.action_dim, self.config.n_layers, self.config.layer_size)
+        self.policy = CategoricalPolicy(network).to(device) if self.discrete else GaussianPolicy(network).to(device)
         self.optimizer = torch.optim.Adam(self.policy.parameters(), lr=self.lr)
         #######################################################
         #########          END YOUR CODE.          ############
@@ -220,7 +220,8 @@ class PolicyGradient(object):
         """
         #######################################################
         #########   YOUR CODE HERE - 1-2 lines.    ############
-        normalized_advantages = torch.nn.functional.normalize(advantages, p=2)
+        normalized_advantages = advantages - np.mean(advantages)
+        normalized_advantages /= np.std(normalized_advantages)
         #######################################################
         #########          END YOUR CODE.          ############
         return normalized_advantages

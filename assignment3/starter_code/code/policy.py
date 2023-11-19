@@ -46,8 +46,8 @@ class BasePolicy:
         action_distribution = self.action_distribution(observations)
         sampled_actions = action_distribution.sample()
         if return_log_prob:
-            log_probs = action_distribution.log_prob(sampled_actions).numpy()
-        sampled_actions = sampled_actions.numpy()
+            log_probs = action_distribution.log_prob(sampled_actions).cpu().detach().numpy()
+        sampled_actions = sampled_actions.cpu().numpy()
         #######################################################
         #########          END YOUR CODE.          ############
         if return_log_prob:
