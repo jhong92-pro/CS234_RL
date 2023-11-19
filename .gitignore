@@ -1,5 +1,5 @@
 /*.pdf
 /*.zip
-/results
+/**/results
 /*/MinAtar
 __pycache__/
