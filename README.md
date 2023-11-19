@@ -19,3 +19,16 @@ git clone https://github.com/kenjyoung/MinAtar.git
 cd MinAtar
 pip install .
 ```
+
+# Assignment3
+Still working on Assignment3.
+
+If you encounter issues with the following command:
+```
+pip install -r requirements.txt
+
+>> error in gym setup command: 'extras_require' must be a dictionary whose values are strings or lists of strings containing valid project/version requirement specifiers.
+```
+- Modify `gym==0.21` to `gym`
+- Run `pip install -r requirements.txt`
+- Revert to the original version by running `pip install gym==0.21`.
